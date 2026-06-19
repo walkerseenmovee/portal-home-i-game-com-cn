@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      background: linear-gradient(145deg, #fae8d4 0%, #f5d5b0 45%, #edc69b 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem 3rem;
+      line-height: 1.6;
+      color: #2d241a;
+    }
+
+    .magazine-wrapper {
+      max-width: 980px;
+      width: 100%;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: rgba(255, 245, 233, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 2.5rem;
+      padding: 3rem 2.2rem 2.5rem;
+      margin-bottom: 2.4rem;
+      box-shadow: 0 16px 40px -12px rgba(140, 80, 30, 0.25);
+      border: 1px solid rgba(255, 236, 210, 0.6);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #4b2f1b;
+      background: linear-gradient(135deg, #6f421d, #9e6638);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .subhead {
+      font-size: 1.2rem;
+      color: #5f3f23;
+      border-top: 1px solid rgba(160, 110, 60, 0.2);
+      border-bottom: 1px solid rgba(160, 110, 60, 0.2);
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      letter-spacing: 0.04rem;
+      font-weight: 450;
+    }
+
+    .hero p {
+      margin-top: 1.6rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
+      color: #3f2e1d;
+    }
+
+    /* 内容卡片区 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: #fefcf7;
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 6px 18px rgba(120, 70, 30, 0.08), 0 2px 6px rgba(50, 30, 10, 0.04);
+      border: 1px solid rgba(250, 230, 200, 0.6);
+      transition: transform 0.1s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(110, 65, 25, 0.10);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 550;
+      margin-bottom: 1rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid #e2c9ae;
+      display: inline-block;
+      color: #4d321c;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: #35281b;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 0.6rem;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #3e2d1b;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #b67d4a;
+      font-weight: bold;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: #f0e1cf;
+      color: #4a2e18;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 450;
+      letter-spacing: 0.02em;
+    }
+
+    /* 页尾访问提示 */
+    .footer-tip {
+      margin-top: 2.8rem;
+      background: #fef8f0;
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(100, 60, 20, 0.06);
+      border: 1px solid #ecdac7;
+    }
+
+    .footer-tip p {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: #3b2a19;
+    }
+
+    .footer-tip .link-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #dbb58b, #c99d70);
+      color: #241b12;
+      font-weight: 600;
+      padding: 0.55rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(190, 140, 80, 0.3);
+      transition: background 0.2s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(150, 100, 40, 0.10);
+    }
+
+    .footer-tip .link-badge:hover {
+      background: linear-gradient(135deg, #cba277, #be8b5b);
+      box-shadow: 0 4px 14px rgba(140, 85, 30, 0.18);
+    }
+
+    .footer-note {
+      margin-top: 1.4rem;
+      font-size: 0.9rem;
+      color: #625140;
+      border-top: 1px dashed #dac6b0;
+      padding-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 1rem 2rem;
+      }
+
+      .hero {
+        padding: 2rem 1.2rem;
+        border-radius: 1.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero .subhead {
+        font-size: 1rem;
+        padding: 0.3rem 0.8rem;
+      }
+
+      .card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.3rem;
+      }
+
+      .footer-tip {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .footer-tip .link-badge {
+        font-size: 1rem;
+        padding: 0.45rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="magazine-wrapper">
+
+  <!-- 首页横幅 hero -->
+  <div class="hero">
+    <h1>爱游戏 · 简明指南</h1>
+    <div class="subhead">专注体验 · 理性探索</div>
+    <p>
+      从资讯聚合到社区互动，<a href="https://portal-home-i-game.com.cn" style="color:#7b4a1f; text-decoration:underline; font-weight:500;">爱游戏</a>
+      为玩家与开发者提供一个结构清晰的信息中转站。本专题梳理平台的基本面貌、适用场景与使用思路。
+    </p>
+  </div>
+
+  <!-- 三段介绍 -->
+  <div class="card-grid">
+
+    <!-- 卡片 1：背景说明 -->
+    <div class="card">
+      <div class="card-title">背景与定位</div>
+      <p>
+        数字娱乐内容的快速增长使得玩家在筛选信息时耗费大量精力。<strong>爱游戏</strong> 是在这样背景下出现的聚合型门户，聚焦游戏新闻、评测摘要、活动预告与资源导航。它并非单一游戏论坛或商店，而是将分散的游戏相关内容收拢到统一界面，降低查找成本。
+      </p>
+      <p>
+        平台覆盖 PC、主机及移动端的多类型作品，不预设偏好立场，以信息整理为主。对于希望快速了解新作动向、版本更新或社区热点的用户，<a href="https://portal-home-i-game.com.cn" style="color:#7b4a1f; text-decoration:underline;">爱游戏</a> 提供了一种轻量级的信息入口。
+      </p>
+      <div class="tag-group">
+        <span class="tag">游戏资讯</span>
+        <span class="tag">评测索引</span>
+        <span class="tag">活动日历</span>
+      </div>
+    </div>
+
+    <!-- 卡片 2：简明用法与特点 -->
+    <div class="card">
+      <div class="card-title">用法与特点</div>
+      <p>
+        首页采用分类卡片与标签筛选，可快速切换关注领域。每个条目通常包含摘要、来源标记与相关链接，方便进一步跳转查阅原始内容。平台不嵌入付费墙，主要功能对浏览者开放。
+      </p>
+      <ul class="feature-list">
+        <li><strong>分类浏览</strong> — 按类型、平台、时间线排列内容</li>
+        <li><strong>聚合摘要</strong> — 每条信息保留核心要素，减少重复阅读</li>
+        <li><strong>社区风向</strong> — 收录热门讨论与玩家创作，但保持编辑筛选</li>
+        <li><strong>访问友好</strong> — 页面结构简洁，加载效率较高</li>
+      </ul>
+      <p style="margin-top: 0.8rem;">
+        使用 <a href="https://portal-home-i-game.com.cn" style="color:#7b4a1f; text-decoration:underline;">爱游戏</a> 时，建议结合自身关注的作品或类型，利用筛选功能定制浏览序列，避免信息过载。
+      </p>
+    </div>
+
+    <!-- 卡片 3：适用场景 + FAQ 摘要 -->
+    <div class="card">
+      <div class="card-title">场景与常见疑问</div>
+      <p>
+        <strong>日常场景：</strong>每周新游资讯回顾、活动攻略整理、独立游戏发现。<br>
+        <strong>深度场景：</strong>对比不同媒体对同一作品的评价摘要，或追踪长期运营游戏的版本更新记录。
+      </p>
+      <p>
+        <strong>— 平台需要注册吗？</strong> 浏览内容无需注册，部分互动功能（如收藏、评论）可能需要简单账号。<br>
+        <strong>— 信息更新频率？</strong> 内容随来源更新，首页与分类页会反映最新收录条目。<br>
+        <strong>— 是否包含用户生成内容？</strong> 社区板块有玩家投稿，但平台会对内容进行基础审核，以维持信息质量。
+      </p>
+      <p>
+        若仍有疑问，可浏览 <a href="https://portal-home-i-game.com.cn" style="color:#7b4a1f; text-decoration:underline;">爱游戏</a> 的常见问题区域或通过站点页脚的联系方式反馈。
+      </p>
+    </div>
+
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-tip">
+    <p>想要获得更完整的游戏信息索引？</p>
+    <a class="link-badge" href="https://portal-home-i-game.com.cn">爱游戏</a>
+    <div class="footer-note">
+      聚合 · 简洁 · 可追溯 — 把筛选的主动权交还给读者。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
