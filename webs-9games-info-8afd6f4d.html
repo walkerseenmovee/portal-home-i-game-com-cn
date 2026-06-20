@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 · 站点介绍与可信说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f9fc;
+            color: #1b2b3a;
+            line-height: 1.6;
+            padding: 0 1.25rem 2.5rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 顶部导航 ---------- */
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 0 0.6rem;
+            border-bottom: 2px solid #c6e3ed;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .topnav .brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            color: #0a4b5c;
+            background: #d9f0f5;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+        }
+
+        .topnav .brand span {
+            color: #208a7a;
+        }
+
+        .topnav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .topnav-links a {
+            text-decoration: none;
+            color: #1b4e5c;
+            font-weight: 500;
+            padding: 0.2rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .topnav-links a:hover {
+            border-bottom-color: #2a9d8f;
+        }
+
+        /* ---------- hero 简洁 ---------- */
+        .hero {
+            padding: 3rem 0 1.8rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: #104551;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #2b5663;
+            font-size: 1.05rem;
+        }
+
+        .hero .site-badge {
+            display: inline-block;
+            background: #e0f2f5;
+            color: #115f6b;
+            padding: 0.25rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* ---------- 网格卡片（三个场景） ---------- */
+        .grid-three {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.6rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.4rem 1.8rem;
+            box-shadow: 0 6px 14px rgba(0, 40, 50, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #39afa0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(20, 100, 110, 0.08);
+        }
+
+        .card .emoji-label {
+            font-size: 1.7rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #124652;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2d5562;
+            flex: 1;
+        }
+
+        .card .tag {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #1d7a6e;
+            background: #e2f3ef;
+            align-self: flex-start;
+            padding: 0.15rem 1rem;
+            border-radius: 30px;
+        }
+
+        /* ---------- 站点介绍与可信说明 ---------- */
+        .trust-section {
+            background: #ddeef3;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin: 2.2rem 0 2.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
+        }
+
+        .trust-block {
+            flex: 1 1 240px;
+        }
+
+        .trust-block h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f4957;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-block p {
+            font-size: 0.95rem;
+            color: #1a4a56;
+        }
+
+        .trust-block a {
+            color: #156b6b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .trust-block a:hover {
+            color: #0e4d4d;
+        }
+
+        /* ---------- 常见说明 (faq 摘要) ---------- */
+        .faq-mini {
+            margin: 2.2rem 0 2.8rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #10434e;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem 1.6rem;
+            margin-bottom: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0, 40, 50, 0.03);
+            border: 1px solid #d2e7ed;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-size: 1rem;
+            color: #0c4653;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            color: #2d5665;
+            font-size: 0.92rem;
+        }
+
+        /* ---------- 底部 ---------- */
+        .footer-note {
+            border-top: 2px solid #cde5ec;
+            padding-top: 1.6rem;
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #38626e;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.3rem 1.4rem;
+        }
+
+        .footer-note a {
+            color: #156b6b;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ---------- 响应式微调 ---------- */
+        @media (max-width: 640px) {
+            .topnav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .topnav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .trust-section {
+                padding: 1.5rem 1.2rem;
+            }
+            .card {
+                padding: 1.4rem 1rem;
+            }
+        }
+
+        /* 蓝绿色点缀额外 */
+        .accent-dot {
+            color: #2a9d8f;
+        }
+
+        .inline-highlight {
+            background: #daf1ed;
+            padding: 0 0.3rem;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 顶部导航 -->
+    <nav class="topnav">
+        <div class="brand">◈ 九<span>游</span>·指南</div>
+        <div class="topnav-links">
+            <a href="#intro">站点简介</a>
+            <a href="#scenes">使用场景</a>
+            <a href="#faq">常见说明</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <header class="hero">
+        <h1>九游 · 轻量导航</h1>
+        <p>围绕游戏兴趣与信息聚合，提供简洁可靠的访问路径。站点定位明确，内容持续维护，适合希望快速了解核心服务的用户。</p>
+        <div class="site-badge">✓ 已核实基础信息 · 持续运营</div>
+    </header>
+
+    <!-- 三个场景模块 -->
+    <section id="scenes" class="grid-three">
+        <div class="card">
+            <div class="emoji-label">🎮</div>
+            <h3>游戏发现</h3>
+            <p>浏览分类与推荐，筛选符合偏好的产品。平台收录多款热门作品及新作资讯，更新节奏稳定。</p>
+            <span class="tag">分类 · 排行</span>
+        </div>
+        <div class="card">
+            <div class="emoji-label">📋</div>
+            <h3>信息参考</h3>
+            <p>查看游戏详情、活动说明及版本动态。页面结构清晰，便于横向比较与决策参考。</p>
+            <span class="tag">详情 · 动态</span>
+        </div>
+        <div class="card">
+            <div class="emoji-label">🔗</div>
+            <h3>直达服务</h3>
+            <p>通过整合的入口快速定位所需功能，减少中间跳转。链接指向明确，适合日常使用习惯。</p>
+            <span class="tag">快捷 · 整合</span>
+        </div>
+    </section>
+
+    <!-- 站点介绍与可信说明 (含链接) -->
+    <section id="intro" class="trust-section">
+        <div class="trust-block">
+            <h2>📌 关于站点</h2>
+            <p><a href="https://webs-9games.com">九游</a> 是一个以游戏内容为焦点的信息平台，提供作品索引、活动资讯及基础服务。页面设计侧重易用性与信息密度，适配不同设备。</p>
+        </div>
+        <div class="trust-block">
+            <h2>🛡️ 可信说明</h2>
+            <p>平台运营方具备明确的备案与联系渠道。所有信息均基于公开资料整理，不包含虚假或诱导内容。建议用户通过 <a href="https://webs-9games.com">九游</a> 直接获取原始信息。</p>
+        </div>
+        <div class="trust-block">
+            <h2>📆 维护状态</h2>
+            <p>站点保持定期更新，内容团队对游戏条目与活动资讯进行校验。如遇异常可参考站内公告或通过反馈渠道沟通。</p>
+        </div>
+    </section>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section id="faq" class="faq-mini">
+        <h2><span class="accent-dot">❓</span> 常见说明</h2>
+        <div class="faq-item">
+            <strong>如何确认信息时效？</strong>
+            <p>首页及列表页通常标注最后更新时间。对于具体游戏，<a href="https://webs-9games.com">九游</a> 详情页会显示版本与活动有效区间，可作参考。</p>
+        </div>
+        <div class="faq-item">
+            <strong>是否包含第三方链接？</strong>
+            <p>部分场景会跳转至外部官方来源（如开发者社区或下载渠道），跳转前页面均有明确提示，用户可自行决定。</p>
+        </div>
+        <div class="faq-item">
+            <strong>遇到页面问题怎么办？</strong>
+            <p>可尝试刷新或切换网络环境；若持续异常，建议通过站内“帮助”入口提交描述，运维人员一般在1个工作日内响应。</p>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer-note">
+        <span>© 九游 简易导航页</span>
+        <span>内容仅供参考 · 以实际页面为准</span>
+        <a href="https://webs-9games.com">九游</a>
+        <span>数据更新于近期</span>
+    </footer>
+
+</div>
+</body>
+</html>
