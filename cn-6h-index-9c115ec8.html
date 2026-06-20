@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>持续关注 · 6合彩信息页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f9fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e3b4c;
+      line-height: 1.7;
+      padding: 2rem 1.25rem;
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* 网格卡片基调 */
+    .grid-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(20, 70, 80, 0.06);
+      padding: 2rem 1.75rem;
+      margin-bottom: 1.75rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .grid-card:hover {
+      box-shadow: 0 8px 28px rgba(20, 90, 100, 0.08);
+    }
+
+    .grid-card--accent {
+      border-left: 4px solid #2a9d8f;
+    }
+
+    .grid-card--note {
+      background: #ebf6f4;
+      border: 1px solid #cde3df;
+    }
+
+    /* 标题系统 */
+    .page-title {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0f4b5c;
+      margin-bottom: 0.3rem;
+      padding: 0;
+    }
+
+    .page-sub {
+      font-size: 1rem;
+      color: #547b8a;
+      border-bottom: 2px solid #cde3df;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #155a6b;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    h2::before {
+      content: "◆";
+      font-size: 1rem;
+      color: #2a9d8f;
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
+    .section-meta {
+      font-size: 0.9rem;
+      color: #5f7f8b;
+      margin-bottom: 1rem;
+    }
+
+    /* 正文 */
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .intro-text {
+      font-size: 1.08rem;
+    }
+
+    .quote-badge {
+      background: #d6eee9;
+      color: #125a67;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .pull-quote {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 4px 10px rgba(42, 157, 143, 0.06);
+      border: 1px solid #cee5e0;
+      font-style: normal;
+      margin: 1.6rem 0;
+      color: #174d5b;
+      font-size: 1.05rem;
+      position: relative;
+    }
+
+    .pull-quote::before {
+      content: "“";
+      font-size: 2.8rem;
+      line-height: 1;
+      color: #2a9d8f;
+      opacity: 0.25;
+      position: absolute;
+      left: 0.8rem;
+      top: 0.2rem;
+      font-family: Georgia, serif;
+    }
+
+    .pull-quote p {
+      margin: 0 0 0.2rem 0;
+      padding-left: 1.2rem;
+    }
+
+    .pull-quote .quote-source {
+      display: block;
+      font-size: 0.85rem;
+      color: #557d89;
+      margin-top: 0.4rem;
+      padding-left: 1.2rem;
+      font-weight: 400;
+    }
+
+    /* 内联链接 */
+    a {
+      color: #1d7a8c;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+
+    a:hover {
+      border-bottom-color: #2a9d8f;
+      color: #0f4b5c;
+    }
+
+    .nav-link-inline {
+      background: #e2f1ee;
+      padding: 0.08rem 0.3rem;
+      border-radius: 12px;
+      border-bottom: none;
+    }
+
+    .nav-link-inline:hover {
+      background: #c8e5df;
+      border-bottom: none;
+    }
+
+    /* 特点卡片网格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .feature-item {
+      background: #f4fafb;
+      border-radius: 20px;
+      padding: 1rem 1.1rem;
+      border: 1px solid #d5e7e4;
+    }
+
+    .feature-item span {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: #1c5b69;
+    }
+
+    .feature-item small {
+      font-size: 0.85rem;
+      color: #4d7380;
+      line-height: 1.4;
+    }
+
+    /* 访问句 / 最后提醒 */
+    .visit-note {
+      background: #dceeea;
+      border-radius: 40px;
+      padding: 1rem 1.8rem;
+      display: inline-block;
+      font-weight: 450;
+      color: #124b58;
+      border: 1px solid #b6d7d0;
+      margin: 0.5rem 0;
+    }
+
+    .visit-note i {
+      font-style: normal;
+      margin-right: 0.4rem;
+    }
+
+    /* 底部 */
+    .footer-meta {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #688b95;
+      border-top: 1px dashed #c7dbd6;
+    }
+
+    /* 移动端调整 */
+    @media (max-width: 540px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+
+      .grid-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: 20px;
+      }
+
+      .page-title {
+        font-size: 1.7rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .pull-quote {
+        padding: 1.1rem 1.2rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- 标题区 -->
+    <header class="grid-card">
+      <h1 class="page-title">再次翻阅 · 一个安静的索引页</h1>
+      <div class="page-sub">从收藏到回访，值得保留的备用入口</div>
+      <p class="intro-text">有时我们只是需要一处可靠的链接，不必每次重新搜索。这篇笔记整理了有关 <a href="https://cn-6h.com" class="nav-link-inline">6合彩</a> 的基本信息、访问方式以及持续关注的思路。内容不多，但都实际可用。</p>
+    </header>
+
+    <!-- 正文段落：再次访问的角度 -->
+    <section class="grid-card">
+      <div class="quote-badge">📌 为什么需要再次访问</div>
+      <p>不少用户会定期查看资讯或走势参考，但每次通过搜索引擎进入，既费时也可能误入无关页面。书签栏里保存一个直达的地址，是很多人的习惯。这里记录的就是这样一个位置——直接指向 <a href="https://cn-6h.com">6合彩</a> 的长期页面，无需额外跳转。</p>
+
+      <div class="pull-quote">
+        <p>把常用的入口放在顺手的地方，比临时翻找更省心。哪怕一两周才用一次，也值得收藏。</p>
+        <span class="quote-source">—— 一位长期关注者的笔记</span>
+      </div>
+
+      <p>如果你之前访问过，大概知道页面布局和基本板块。这一版本的内容保持简洁，没有冗余推荐，主要用作访问索引。下次想回来时，可以直接打开这个页面，然后从链接过去。</p>
+    </section>
+
+    <!-- 特点卡片 + 收藏视角 -->
+    <section class="grid-card grid-card--accent">
+      <h2>收藏与持续关注</h2>
+      <p>对于需要定期浏览的信息型站点，收藏夹不应该只是摆设。整理了几个让书签真正好用的小特点：</p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <span>📋 直接定位</span>
+          <small>一个链接直达，不经过中间页或导航延时。</small>
+        </div>
+        <div class="feature-item">
+          <span>🔖 名称固定</span>
+          <small>书签名建议就用「6合彩」，清晰无歧义。</small>
+        </div>
+        <div class="feature-item">
+          <span>📱 移动适配</span>
+          <small>手机浏览器同样友好，缩放阅读无压力。</small>
+        </div>
+        <div class="feature-item">
+          <span>🧭 备用备忘</span>
+          <small>即使更换设备，这篇页面也可作为临时索引。</small>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.2rem;">将 <a href="https://cn-6h.com">6合彩</a> 添加到书签栏或浏览器主页快捷方式，下次访问只需要一次点击。如果偶尔使用，也可以收藏本页作为辅助跳板。</p>
+    </section>
+
+    <!-- 提示 / 日常场景 -->
+    <section class="grid-card grid-card--note">
+      <h2>一些日常使用提醒</h2>
+      <p>不论多稳定的站点，偶尔也会遇到访问波动。收藏夹里保留两三个相关地址，或者定期检查链接有效性，可以让体验更顺畅。下面几条来自常见反馈：</p>
+
+      <ul style="list-style: none; margin: 0.8rem 0 0.2rem 0;">
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #d8e9e5;">✓ 建议使用主流浏览器（Chrome / Edge / Safari）访问。</li>
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #d8e9e5;">✓ 如果页面加载异常，先检查网络，再确认书签地址是否为 <code style="background: #d0e6e1; padding: 0.1rem 0.4rem; border-radius: 12px; font-size: 0.9rem;">https://cn-6h.com</code>。</li>
+        <li style="padding: 0.4rem 0;">✓ 不需要每次都重新输入，用书签或历史记录更省力。</li>
+      </ul>
+    </section>
+
+    <!-- 访问句 + 提示 -->
+    <section class="grid-card" style="padding-bottom: 1.5rem;">
+      <div class="visit-note">
+        <i>🔗</i> 当前可访问地址：
+        <a href="https://cn-6h.com" style="border-bottom: 2px solid #2a9d8f; padding-bottom: 1px;">6合彩</a>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: #3b6c78;">页面内容仅供参考，不构成任何建议。保持理性，适度关注。</p>
+    </section>
+
+    <!-- 极简 FAQ 摘要 -->
+    <section class="grid-card" style="background: #fafdfd;">
+      <h2>快速摘要</h2>
+      <p><strong>Q：</strong> 这个页面会经常更新吗？<br>
+      <strong>A：</strong> 本页仅作为静态索引，链接指向固定站点。若将来地址有变，此处会同步修正。</p>
+      <p><strong>Q：</strong> 为什么强调收藏？<br>
+      <strong>A：</strong> 避免每次临时搜索，同时降低误入仿冒或无关页面的概率。</p>
+      <p style="margin-bottom: 0.2rem;"><strong>Q：</strong> 可以直接分享这个页面的链接吗？<br>
+      <strong>A：</strong> 可以。本页面本身就是用于回访和分享，把 https://cn-6h.com 的索引信息传递给有需要的人。</p>
+    </section>
+
+    <!-- 底部 -->
+    <div class="footer-meta">
+      <span>内容整理 · 仅供索引 &nbsp;|&nbsp; 保持清晰路线</span>
+    </div>
+  </div>
+</body>
+</html>
